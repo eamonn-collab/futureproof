@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling for chat interface */
+html {
+  scroll-behavior: smooth;
+}
+
+.chat-container {
+  @apply flex flex-col gap-4 overflow-y-auto;
+  /* Hide scrollbar but keep functionality */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.chat-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Message animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: slideInUp 0.3s ease-out;
+}
+
+/* Streaming indicator animation */
+@keyframes pulse-dots {
+  0%,
+  20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%,
+  100% {
+    content: '...';
+  }
+}
+
+.streaming-indicator {
+  animation: fadeInOut 1s infinite;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Progress bar animation */
+@keyframes progressFill {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.progress-fill {
+  animation: progressFill 0.5s ease-out;
+}
+
+/* Chat input focus state */
+.chat-input-focus {
+  @apply border-purple-500 ring-2 ring-purple-200 dark:ring-purple-900;
+}
+
+/* Button hover effects */
+.btn-primary-hover {
+  @apply transition-all duration-200 hover:scale-105 active:scale-95;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent;
+}
+
+/* Card elevations */
+.card-elevated {
+  @apply rounded-2xl border border-purple-200/30 bg-white/80 shadow-lg backdrop-blur-sm dark:border-purple-800/30 dark:bg-gray-800/80;
+}
+
+/* Responsive text sizes */
+@layer components {
+  .text-title {
+    @apply text-3xl font-bold sm:text-4xl;
+  }
+
+  .text-subtitle {
+    @apply text-lg text-gray-600 sm:text-xl dark:text-gray-300;
+  }
+
+  .text-body {
+    @apply text-base text-gray-700 dark:text-gray-200;
+  }
+}
